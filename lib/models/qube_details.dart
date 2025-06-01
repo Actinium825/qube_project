@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'qube_details.freezed.dart';
 
 @freezed
-class QubeDetails with _$QubeDetails {
+abstract class QubeDetails with _$QubeDetails {
   const factory QubeDetails({
     @Default('') String name,
     @Default('') String email,

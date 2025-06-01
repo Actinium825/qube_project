@@ -6,7 +6,7 @@ import 'package:qube_project/models/qube_details.dart';
 part 'app_state.freezed.dart';
 
 @freezed
-class AppState with _$AppState {
+abstract class AppState with _$AppState {
   const factory AppState({
     @Default(Wait.empty) @JsonKey(includeFromJson: false, includeToJson: false) Wait wait,
     @Default(null) bool? isSuccessful,
