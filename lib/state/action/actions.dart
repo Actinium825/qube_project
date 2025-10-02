@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
+import 'package:dartx/dartx.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:qube_project/database/database.dart';
 import 'package:qube_project/models/qube_details.dart';
@@ -29,7 +30,7 @@ class DeliverAction extends LoadingAction {
   @override
   Future<AppState> reduce() async {
     // Mock a delay
-    await Future<void>.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(3.seconds);
     final isEmailValid = EmailValidator.validate(state.qubeDetails?.email ?? '');
     return state.copyWith(isSuccessful: isEmailValid);
   }
@@ -78,7 +79,7 @@ class GetInitialListAction extends LoadingAction {
   @override
   Future<AppState> reduce() async {
     // Mock a delay
-    await Future<void>.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(3.seconds);
     return state;
   }
 }

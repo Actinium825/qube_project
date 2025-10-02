@@ -22,7 +22,6 @@ class QubeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     const verticalSpace = VerticalSpace(space: 4.0);
     const horizontalSpace = HorizontalSpace(space: 8.0);
-    final isOverdue = qubeItem.deliveryDate.isBefore(DateTime.now());
 
     return Container(
       padding: qubeCardPadding,
@@ -40,7 +39,7 @@ class QubeCard extends StatelessWidget {
                 DateFormat.jm().format(qubeItem.deliveryDate),
                 style: TextStyles.xxs,
               ),
-              if (isOverdue)
+              if (qubeItem.deliveryDate.isBefore(DateTime.now()))
                 CircleAvatar(
                   radius: overdueIndicatorOuterSize,
                   backgroundColor: overdueIndicatorColor.withValues(alpha: 0.2),

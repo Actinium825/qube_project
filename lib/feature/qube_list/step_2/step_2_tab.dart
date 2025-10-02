@@ -35,20 +35,17 @@ class Step2Tab extends StatefulWidget {
 
 class _Step2TabState extends State<Step2Tab> {
   late final GlobalKey<FormState> _formKey;
-  late final TextEditingController _nameTextController;
-  late final TextEditingController _emailTextController;
-  late final TextEditingController _phoneTextController;
+  late final _nameTextController = TextEditingController();
+  late final _emailTextController = TextEditingController();
+  late final _phoneTextController = TextEditingController();
   late String _emailHintText;
 
   @override
   void initState() {
     _formKey = GlobalKey<FormState>();
-    _nameTextController = TextEditingController()
-      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.name(_nameTextController.text)));
-    _emailTextController = TextEditingController()
-      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.email(_emailTextController.text)));
-    _phoneTextController = TextEditingController()
-      ..addListener(() => widget.onUpdateForm(QubeDetailsForm.phone(_phoneTextController.text)));
+    _nameTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.name(_nameTextController.text)));
+    _emailTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.email(_emailTextController.text)));
+    _phoneTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.phone(_phoneTextController.text)));
     _emailHintText = emailHintText;
     super.initState();
   }
@@ -89,11 +86,13 @@ class _Step2TabState extends State<Step2Tab> {
     final areDetailsFilled =
         qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
     final isTextFieldEnabled = !widget.isLoading && !isDeliverSuccessful;
+    const largeVerticalSpace = VerticalSpace(space: 16.0);
+    const mediumVerticalSpace = VerticalSpace(space: 12.0);
 
     return Column(
       children: [
         DateIndicator(date: DateFormat(dateIndicatorFormat).format(deliveryDate)),
-        const VerticalSpace(space: 16.0),
+        largeVerticalSpace,
         Container(
           padding: qubeCardPadding,
           decoration: BoxDecoration(
@@ -112,7 +111,7 @@ class _Step2TabState extends State<Step2Tab> {
                 enterDetailsHeader,
                 style: TextStyles.base,
               ),
-              const VerticalSpace(space: 16.0),
+              largeVerticalSpace,
               Form(
                 key: _formKey,
                 child: Column(
@@ -122,14 +121,14 @@ class _Step2TabState extends State<Step2Tab> {
                       textEditingController: _nameTextController,
                       isEnabled: isTextFieldEnabled,
                     ),
-                    const VerticalSpace(space: 12.0),
+                    mediumVerticalSpace,
                     DetailsField(
                       hintText: _emailHintText,
                       keyboardType: TextInputType.emailAddress,
                       textEditingController: _emailTextController,
                       isEnabled: isTextFieldEnabled,
                     ),
-                    const VerticalSpace(space: 12.0),
+                    mediumVerticalSpace,
                     DetailsField(
                       hintText: phoneNumberHintText,
                       keyboardType: TextInputType.phone,
@@ -139,7 +138,7 @@ class _Step2TabState extends State<Step2Tab> {
                   ],
                 ),
               ),
-              const VerticalSpace(space: 16.0),
+              largeVerticalSpace,
               AbsorbPointer(
                 absorbing: isDeliverSuccessful,
                 child: CustomElevatedButton(

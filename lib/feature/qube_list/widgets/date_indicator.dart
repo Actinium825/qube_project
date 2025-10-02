@@ -15,11 +15,9 @@ class DateIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const horizontalSpace = HorizontalSpace(space: 12.0);
-    const customDivider = CustomDivider();
-
     return Row(
       children: [
-        customDivider,
+        const CustomDivider(),
         horizontalSpace,
         Container(
           decoration: BoxDecoration(
@@ -33,7 +31,7 @@ class DateIndicator extends StatelessWidget {
           ),
         ),
         horizontalSpace,
-        customDivider,
+        const CustomDivider(),
       ],
     );
   }
