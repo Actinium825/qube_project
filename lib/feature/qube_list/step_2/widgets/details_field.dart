@@ -23,13 +23,7 @@ class DetailsField extends StatefulWidget {
 }
 
 class _DetailsFieldState extends State<DetailsField> {
-  late final ValueNotifier<bool> _isErrorNotifier;
-
-  @override
-  void initState() {
-    _isErrorNotifier = ValueNotifier(false);
-    super.initState();
-  }
+  late final _isErrorNotifier = ValueNotifier(false);
 
   @override
   void dispose() {

@@ -7,11 +7,14 @@ import 'package:qube_project/state/app_state.dart';
 
 class QubeListVmFactory extends VmFactory<AppState, QubeListConnector, QubeListVM> {
   @override
-  QubeListVM fromStore() => QubeListVM(
-        onSelectQube: _onSelectQube,
-        isPosting: state.wait.isWaiting(DeliverAction.waitKey),
-        isGettingList: state.wait.isWaiting(GetInitialListAction.waitKey),
-      );
+  QubeListVM fromStore() {
+    final wait = state.wait;
+    return QubeListVM(
+      onSelectQube: _onSelectQube,
+      isPosting: wait.isWaiting(DeliverAction.waitKey),
+      isGettingList: wait.isWaiting(GetInitialListAction.waitKey),
+    );
+  }
 
   void _onSelectQube(QubeItem selectedQube) => dispatch(SelectQubeAction(selectedQube: selectedQube));
 }

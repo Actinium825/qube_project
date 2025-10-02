@@ -24,13 +24,7 @@ class QubeListPage extends StatefulWidget {
 }
 
 class _QubeListPageState extends State<QubeListPage> with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
-
-  @override
-  void initState() {
-    _tabController = TabController(length: tabBarCount, vsync: this);
-    super.initState();
-  }
+  late final _tabController = TabController(length: tabBarCount, vsync: this);
 
   @override
   void dispose() {

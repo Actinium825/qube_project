@@ -13,8 +13,6 @@ class LoadingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const horizontalSpace = HorizontalSpace(space: 12.0);
-    const customDivider = CustomDivider();
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: const Shimmer(
@@ -29,14 +27,14 @@ class LoadingList extends StatelessWidget {
         children: [
           const Row(
             children: [
-              customDivider,
+              CustomDivider(),
               horizontalSpace,
               LoadingShimmer(
                 width: 84,
                 radius: 100,
               ),
               horizontalSpace,
-              customDivider,
+              CustomDivider(),
             ],
           ),
           const VerticalSpace(space: 16.0),
