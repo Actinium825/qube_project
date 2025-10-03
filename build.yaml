@@ -3,16 +3,11 @@ targets:
     builders:
       drift_dev:
         generate_for:
-          exclude:
-            - lib
           include:
             - lib/database/*
 
       freezed:
-        enabled: true
         generate_for:
-          exclude:
-            - lib
           include:
             - lib/models/*
             - lib/state/app_state.dart
