@@ -14,16 +14,17 @@ class GradientPoint extends StatelessWidget {
     return ShaderMask(
       blendMode: BlendMode.srcIn,
       shaderCallback: (bounds) => qubeGradient.createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
-      child: isFilled
-          ? const CircleAvatar(radius: gradientPointSize / 2)
-          : Container(
-              height: gradientPointSize,
-              width: gradientPointSize,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(),
-              ),
-            ),
+      child: switch (isFilled) {
+        true => const CircleAvatar(radius: gradientPointSize / 2),
+        false => Container(
+          height: gradientPointSize,
+          width: gradientPointSize,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(),
+          ),
+        ),
+      },
     );
   }
 }

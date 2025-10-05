@@ -26,7 +26,7 @@ class QubeList extends StatelessWidget {
 
         return ListView.separated(
           itemCount: groupedQubeItems.length,
-          separatorBuilder: (_, __) => const VerticalSpace(space: 32.0),
+          separatorBuilder: (_, _) => const VerticalSpace(space: 32.0),
           itemBuilder: (_, groupIndex) {
             final qubeItemEntry = groupedQubeItems[groupIndex];
             final qubeItems = qubeItemEntry.second;
@@ -39,7 +39,7 @@ class QubeList extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: qubeItems.length,
                   shrinkWrap: true,
-                  separatorBuilder: (_, __) => const VerticalSpace(space: 20.0),
+                  separatorBuilder: (_, _) => const VerticalSpace(space: 20.0),
                   itemBuilder: (_, itemIndex) {
                     final qubeItem = qubeItems[itemIndex];
                     return QubeCard(

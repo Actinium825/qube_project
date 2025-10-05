@@ -35,13 +35,13 @@ class QubeListTab extends StatelessWidget {
         ),
         child: ListenableBuilder(
           listenable: tabController,
-          builder: (_, __) {
+          builder: (_, _) {
             final isStep1 = tabController.index == 0;
             return AbsorbPointer(
               absorbing: isPosting || isStep1,
               child: PopScope(
                 canPop: isStep1,
-                onPopInvokedWithResult: (_, __) => _onPopInvoked(),
+                onPopInvokedWithResult: (_, _) => _onPopInvoked(),
                 child: TabBar(
                   splashBorderRadius: borderRadius,
                   controller: tabController,
@@ -51,26 +51,27 @@ class QubeListTab extends StatelessWidget {
                     gradient: isGettingList ? null : qubeGradient,
                   ),
                   indicatorSize: TabBarIndicatorSize.tab,
-                  tabs: isGettingList
-                      ? List.generate(2, (_) => const LoadingShimmer(width: 100))
-                      : [
-                          StreamBuilder<int>(
-                            stream: appDatabase.qubeItemsCount(),
-                            builder: (_, snapshot) => StepTabButton(
-                              label: step1Label,
-                              countColor: Colors.black.withValues(alpha: isStep1 ? 1 : unselectedTabOpacity),
-                              count: snapshot.data ?? 0,
-                            ),
-                          ),
-                          AnimatedOpacity(
-                            duration: kThemeAnimationDuration,
-                            opacity: !isStep1 ? 1 : unselectedTabOpacity,
-                            child: StepTabButton(
-                              label: step2Label,
-                              count: !isStep1 ? 1 : 0,
-                            ),
-                          ),
-                        ],
+                  tabs: switch (isGettingList) {
+                    true => List.generate(2, (_) => const LoadingShimmer(width: 100)),
+                    false => [
+                      StreamBuilder<int>(
+                        stream: appDatabase.qubeItemsCount(),
+                        builder: (_, snapshot) => StepTabButton(
+                          label: step1Label,
+                          countColor: Colors.black.withValues(alpha: isStep1 ? 1 : unselectedTabOpacity),
+                          count: snapshot.data ?? 0,
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        duration: kThemeAnimationDuration,
+                        opacity: !isStep1 ? 1 : unselectedTabOpacity,
+                        child: StepTabButton(
+                          label: step2Label,
+                          count: !isStep1 ? 1 : 0,
+                        ),
+                      ),
+                    ],
+                  },
                 ),
               ),
             );

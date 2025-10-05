@@ -29,9 +29,9 @@ class QubeListVM extends Vm {
     required this.isPosting,
     required this.isGettingList,
   }) : super(
-          equals: [
-            isPosting,
-            isGettingList,
-          ],
-        );
+         equals: [
+           isPosting,
+           isGettingList,
+         ],
+       );
 }
