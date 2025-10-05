@@ -42,7 +42,7 @@ class LoadingList extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 3,
             shrinkWrap: true,
-            separatorBuilder: (_, __) => const VerticalSpace(space: 20.0),
+            separatorBuilder: (_, _) => const VerticalSpace(space: 20.0),
             itemBuilder: (_, itemIndex) {
               const verticalSpace = VerticalSpace(space: 4.0);
               return Container(

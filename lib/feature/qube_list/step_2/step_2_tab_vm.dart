@@ -10,13 +10,13 @@ import 'package:qube_project/state/app_state.dart';
 class Step2TabVmFactory extends VmFactory<AppState, Step2TabConnector, Step2TabVM> {
   @override
   Step2TabVM fromStore() => Step2TabVM(
-        isLoading: state.wait.isWaiting(DeliverAction.waitKey),
-        onDeliver: _onDeliver,
-        isSuccessful: state.isSuccessful,
-        selectedQube: state.selectedQube,
-        onUpdateForm: _onUpdateForm,
-        qubeDetails: _qubeDetails,
-      );
+    isLoading: state.wait.isWaiting(DeliverAction.waitKey),
+    onDeliver: _onDeliver,
+    isSuccessful: state.isSuccessful,
+    selectedQube: state.selectedQube,
+    onUpdateForm: _onUpdateForm,
+    qubeDetails: _qubeDetails,
+  );
 
   QubeDetails get _qubeDetails => state.qubeDetails ?? const QubeDetails();
 
@@ -49,11 +49,11 @@ class Step2TabVM extends Vm {
     required this.isSuccessful,
     required this.onUpdateForm,
   }) : super(
-          equals: [
-            selectedQube,
-            qubeDetails,
-            isLoading,
-            isSuccessful,
-          ],
-        );
+         equals: [
+           selectedQube,
+           qubeDetails,
+           isLoading,
+           isSuccessful,
+         ],
+       );
 }

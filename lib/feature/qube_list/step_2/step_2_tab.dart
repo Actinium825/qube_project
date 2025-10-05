@@ -34,19 +34,17 @@ class Step2Tab extends StatefulWidget {
 }
 
 class _Step2TabState extends State<Step2Tab> {
-  late final GlobalKey<FormState> _formKey;
+  late final _formKey = GlobalKey<FormState>();
   late final _nameTextController = TextEditingController();
   late final _emailTextController = TextEditingController();
   late final _phoneTextController = TextEditingController();
-  late String _emailHintText;
+  late String _emailHintText = _emailHintText;
 
   @override
   void initState() {
-    _formKey = GlobalKey<FormState>();
     _nameTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.name(_nameTextController.text)));
     _emailTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.email(_emailTextController.text)));
     _phoneTextController.addListener(() => widget.onUpdateForm(QubeDetailsForm.phone(_phoneTextController.text)));
-    _emailHintText = emailHintText;
     super.initState();
   }
 
@@ -81,10 +79,11 @@ class _Step2TabState extends State<Step2Tab> {
   @override
   Widget build(BuildContext context) {
     final deliveryDate = widget.selectedQube?.deliveryDate ?? DateTime.now();
-    final qubeDetails = widget.qubeDetails;
     final isDeliverSuccessful = widget.isSuccessful == true;
     final areDetailsFilled =
-        qubeDetails.name.isNotEmpty && qubeDetails.email.isNotEmpty && qubeDetails.phone.isNotEmpty;
+        widget.qubeDetails.name.isNotEmpty &&
+        widget.qubeDetails.email.isNotEmpty &&
+        widget.qubeDetails.phone.isNotEmpty;
     final isTextFieldEnabled = !widget.isLoading && !isDeliverSuccessful;
     const largeVerticalSpace = VerticalSpace(space: 16.0);
     const mediumVerticalSpace = VerticalSpace(space: 12.0);
@@ -145,14 +144,14 @@ class _Step2TabState extends State<Step2Tab> {
                   label: isDeliverSuccessful
                       ? postedLabel
                       : widget.isLoading
-                          ? postingLabel
-                          : deliverButtonLabel,
+                      ? postingLabel
+                      : deliverButtonLabel,
                   onPress: widget.isLoading || !areDetailsFilled ? null : _onPressDeliver,
                 ),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

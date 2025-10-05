@@ -57,14 +57,15 @@ class _DetailsFieldState extends State<DetailsField> {
           disabledBorder: border,
           prefixIcon: ValueListenableBuilder<bool>(
             valueListenable: _isErrorNotifier,
-            builder: (_, isError, __) => Container(
+            builder: (_, isError, _) => Container(
               margin: detailsCardPrefixMargin,
-              foregroundDecoration: isError
-                  ? const BoxDecoration(
-                      color: errorFieldColor,
-                      shape: BoxShape.circle,
-                    )
-                  : null,
+              foregroundDecoration: switch (isError) {
+                true => const BoxDecoration(
+                  color: errorFieldColor,
+                  shape: BoxShape.circle,
+                ),
+                false => null,
+              },
               child: const GradientPoint(),
             ),
           ),

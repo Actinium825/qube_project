@@ -41,10 +41,10 @@ class DeliverAction extends LoadingAction {
 class ResetDetailsAction extends ReduxAction<AppState> {
   @override
   AppState reduce() => state.copyWith(
-        isSuccessful: null,
-        selectedQube: null,
-        qubeDetails: null,
-      );
+    isSuccessful: null,
+    selectedQube: null,
+    qubeDetails: null,
+  );
 }
 
 /// Selects a qube to be shown in Step 2
